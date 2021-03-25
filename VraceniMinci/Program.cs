@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace VraceniMinci
 {
-    class Program
+
+   public class Program
     {
        public static int pocetPadesat = 0;
        public static int pocetDvacet = 0;
@@ -103,29 +104,27 @@ namespace VraceniMinci
             //2
             else if (MaxDva)
             {
-                int zbytekDva = castka % 2;
-
-                if (zbytekDva != 0)
+                if (castka != 1)
                 {
-                    pocetDva = (castka - zbytekDva) / 2;
-                    Console.WriteLine("2 - " + pocetDva);
-                    Rozdeleni(false, false, false, false, false, pocetDva);
+                    int zbytekDva = castka % 2;
+                    if (zbytekDva != 0)
+                    {
+                        pocetDva = (castka - zbytekDva) / 2;
+                        Console.WriteLine("2 - " + pocetDva);
+                        Console.WriteLine("1 - " + pocetJedna);
+                        Rozdeleni(false, false, false, false, false, pocetDva);
+                    }
                 }
+               
                 else
                 {
-                    pocetDva = (castka - pocetDva) / 2;
+                    pocetJedna = castka;
                     Console.WriteLine("2 - " + pocetDva);
-
+                    Console.WriteLine("1 - " + pocetJedna);
                 }
                 
     
 
-            }
-            //
-            else
-            {
-                pocetDva = (castka - pocetDva) / 2;
-                Console.WriteLine("2 - " + pocetDva);
             }
 
 
@@ -152,12 +151,17 @@ namespace VraceniMinci
                     Rozdeleni(true, true, true, true, true, zaplacenaCastka - cenaNakupu);
                     start = false;
                 }
-                else
+                else if(cenaNakupu > zaplacenaCastka)
                 {
                     Console.WriteLine("Nezaplatil jsi nákup, zadej informace znovu");
                     Console.WriteLine("");
 
                     start = true;
+                }
+                else
+                {
+                    Console.WriteLine("Nic se nemúže vrátit");
+                    start = false;
                 }
             }
 
